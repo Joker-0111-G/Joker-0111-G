@@ -5,7 +5,7 @@
 <div align="center">
   <h3>
     <a href="https://git.io/typing-svg">
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2369F7&center=true&vCenter=true&width=600&lines=Always+curious%2C+always+coding.;Exploring+Backend+Architecture+with+Go.;Solving+puzzles+in+CTF+(Pwn%2FCrypto).;Modeling+the+world+with+Math+%26+Code." alt="Typing SVG" />
+      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2369F7&center=true&vCenter=true&width=600&lines=Always+curious%2C+always+coding.;Exploring+Backend+Architecture+with+Go.;Modeling+the+world+with+Math+%26+Code." alt="Typing SVG" />
     </a>
   </h3>
 </div>
