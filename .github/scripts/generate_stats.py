@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Generate GitHub stats SVGs in github-readme-stats style."""
+"""Generate beautiful GitHub stats SVGs (white theme)."""
 
 import json
 import os
 import urllib.request
+import base64
 
 USERNAME = "Joker-0111-G"
 OUTPUT_DIR = "assets"
@@ -18,17 +19,19 @@ LANG_COLORS = {
     "Makefile": "#427819",
 }
 
-# github-readme-stats blue-green theme colors
-THEME = {
-    "bg": "#0d1117",
-    "card": "#161b22",
-    "border": "#30363d",
-    "title": "#00b3ff",       # blue-green title
-    "text": "#c9d1d9",
-    "label": "#8b949e",
-    "icon": "#00b3ff",
-    "ring_bg": "#1f2937",
-    "ring_fg": "#00b3ff",
+T = {
+    "bg": "#ffffff",
+    "card": "#f6f8fa",
+    "border": "#d0d7de",
+    "title": "#24292f",
+    "text": "#24292f",
+    "label": "#57606a",
+    "accent": "#0969da",
+    "acc2": "#8250df",
+    "acc3": "#1a7f37",
+    "box_bg": "#ffffff",
+    "box_border": "#d0d7de",
+    "ring_bg": "#eaeef2",
 }
 
 
@@ -43,61 +46,85 @@ def escape(text):
     return str(text).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def generate_stats_svg(user, repos):
+def fetch_avatar_base64(url):
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "stats-script"})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            b64 = base64.b64encode(resp.read()).decode()
+            return f"data:image/png;base64,{b64}"
+    except Exception:
+        return None
+
+
+def generate_stats_svg(user, repos, avatar_uri=None):
     total_stars = sum(r.get("stargazers_count", 0) for r in repos if not r.get("fork"))
     total_forks = sum(r.get("forks_count", 0) for r in repos if not r.get("fork"))
     total_repos = user.get("public_repos", 0)
     followers = user.get("followers", 0)
-    following = user.get("following", 0)
 
-    stats = [
-        ("📦", "Repos", str(total_repos)),
-        ("⭐", "Stars", str(total_stars)),
-        ("⑂", "Forks", str(total_forks)),
-        ("👥", "Followers", str(followers)),
-        ("❤️", "Following", str(following)),
+    stats_data = [
+        ("⭐", "Stars", str(total_stars), "#d4a72c"),
+        ("⑂", "Forks", str(total_forks), "#8250df"),
+        ("📦", "Repos", str(total_repos), "#0969da"),
+        ("👥", "Followers", str(followers), "#1a7f37"),
     ]
 
-    card_w = 450
-    card_h = 40 + len(stats) * 48 + 30
+    card_w, card_h = 460, 300
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{card_w}" height="{card_h}" viewBox="0 0 {card_w} {card_h}">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="{THEME['card']}" />
-      <stop offset="100%" stop-color="{THEME['bg']}" />
-    </linearGradient>
     <linearGradient id="hdr" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="{THEME['icon']}" />
-      <stop offset="100%" stop-color="#8b5cf6" />
+      <stop offset="0%" stop-color="#0969da" />
+      <stop offset="50%" stop-color="#8250df" />
+      <stop offset="100%" stop-color="#1a7f37" />
     </linearGradient>
+    <clipPath id="clip">
+      <circle cx="52" cy="52" r="26" />
+    </clipPath>
   </defs>
 
-  <!-- Card background -->
-  <rect width="{card_w}" height="{card_h}" rx="8" fill="url(#bg)" stroke="{THEME['border']}" stroke-width="1" />
+  <rect width="{card_w}" height="{card_h}" rx="14" fill="{T['bg']}" stroke="{T['border']}" stroke-width="1.5" />
+  <rect x="0" y="0" width="{card_w}" height="6" rx="14" fill="url(#hdr)" />'''
 
-  <!-- Top gradient strip -->
-  <rect x="0" y="0" width="{card_w}" height="4" rx="8" fill="url(#hdr)" />
-
-  <!-- Header: GitHub icon + username -->
-  <svg x="20" y="18" width="16" height="16" viewBox="0 0 16 16" fill="{THEME['icon']}">
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-  </svg>
-  <text x="44" y="30" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="{THEME['title']}">{escape(USERNAME)}&#39;s GitHub Stats</text>
-
-  <!-- Stats list -->
-  <rect x="20" y="44" width="{card_w - 40}" height="1" fill="{THEME['border']}" />'''
-
-    y = 68
-    for emoji, label, value in stats:
+    if avatar_uri:
         svg += f'''
-  <text x="28" y="{y}" font-family="Segoe UI, sans-serif" font-size="15">{emoji}</text>
-  <text x="52" y="{y}" font-family="Segoe UI, sans-serif" font-size="14" fill="{THEME['label']}">{label}</text>
-  <text x="{card_w - 28}" y="{y}" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="{THEME['text']}">{value}</text>'''
-        y += 48
+  <image href="{avatar_uri}" x="26" y="26" width="52" height="52" clip-path="url(#clip)" />
+  <circle cx="52" cy="52" r="26" fill="none" stroke="{T['border']}" stroke-width="2" />'''
+    else:
+        svg += f'''
+  <circle cx="52" cy="52" r="26" fill="#0969da" />
+  <text x="52" y="59" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">{USERNAME[0].upper()}</text>'''
 
-    svg += '''
-</svg>'''
+    svg += f'''
+  <text x="92" y="44" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="{T['title']}">{escape(USERNAME)}</text>
+  <text x="92" y="64" font-family="Segoe UI, sans-serif" font-size="13" fill="{T['label']}">{escape(user.get('bio', 'Glimmer·Journey') or 'Glimmer·Journey')}</text>
+
+  <rect x="20" y="96" width="{card_w - 40}" height="1" fill="{T['border']}" />
+
+  <circle cx="80" cy="200" r="42" fill="none" stroke="{T['ring_bg']}" stroke-width="8" />'''
+
+    total_all = total_stars + total_repos + followers + total_forks
+    ring_val = min(total_all, 100)
+    ring_circ = 2 * 3.14159 * 42
+    ring_off = ring_circ * (1 - ring_val / 100)
+
+    svg += f'''
+  <circle cx="80" cy="200" r="42" fill="none" stroke="url(#hdr)" stroke-width="8" stroke-dasharray="{ring_circ}" stroke-dashoffset="{ring_off}" stroke-linecap="round" transform="rotate(-90 80 200)" />
+  <text x="80" y="198" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700" fill="{T['text']}">{total_all}</text>
+  <text x="80" y="214" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="{T['label']}">Total</text>'''
+
+    x_start, y_start = 140, 140
+    for i, (emoji, label, value, color) in enumerate(stats_data):
+        col, row = i % 2, i // 2
+        x = x_start + col * 145
+        y = y_start + row * 75
+        svg += f'''
+  <rect x="{x}" y="{y}" width="130" height="58" rx="10" fill="{T['box_bg']}" stroke="{T['box_border']}" stroke-width="1" />
+  <text x="{x + 12}" y="{y + 22}" font-family="Segoe UI, sans-serif" font-size="18">{emoji}</text>
+  <text x="{x + 36}" y="{y + 22}" font-family="Segoe UI, sans-serif" font-size="12" fill="{T['label']}">{label}</text>
+  <text x="{x + 12}" y="{y + 46}" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700" fill="{color}">{value}</text>'''
+
+    svg += '\n</svg>'
     return svg
 
 
@@ -113,44 +140,37 @@ def generate_langs_svg(langs_data):
     if others > 0:
         top.append(("Other", others))
 
-    # Compact layout: dot + name + % + thin bar
-    card_w = 450
-    card_h = 50 + len(top) * 34 + 10
+    card_w, card_h = 460, 42 + len(top) * 38 + 20
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{card_w}" height="{card_h}" viewBox="0 0 {card_w} {card_h}">
   <defs>
-    <linearGradient id="lbg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="{THEME['card']}" />
-      <stop offset="100%" stop-color="{THEME['bg']}" />
-    </linearGradient>
     <linearGradient id="lhdr" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="{THEME['icon']}" />
-      <stop offset="100%" stop-color="#8b5cf6" />
+      <stop offset="0%" stop-color="#d4a72c" />
+      <stop offset="50%" stop-color="#0969da" />
+      <stop offset="100%" stop-color="#8250df" />
     </linearGradient>
   </defs>
 
-  <rect width="{card_w}" height="{card_h}" rx="8" fill="url(#lbg)" stroke="{THEME['border']}" stroke-width="1" />
-  <rect x="0" y="0" width="{card_w}" height="4" rx="8" fill="url(#lhdr)" />
+  <rect width="{card_w}" height="{card_h}" rx="14" fill="{T['bg']}" stroke="{T['border']}" stroke-width="1.5" />
+  <rect x="0" y="0" width="{card_w}" height="6" rx="14" fill="url(#lhdr)" />
 
-  <text x="20" y="30" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="{THEME['title']}">📊 Top Languages</text>
+  <text x="24" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="{T['title']}">📊 Most Used Languages</text>'''
 
-  <rect x="20" y="44" width="{card_w - 40}" height="1" fill="{THEME['border']}" />'''
-
-    bar_full_w = 250
-    y = 68
+    bar_w = 260
+    y = 52
 
     for lang, count in top:
         pct = count / total * 100
-        color = LANG_COLORS.get(lang, "#6e7681")
-        bar_w = int(bar_full_w * pct / 100)
+        color = LANG_COLORS.get(lang, "#57606a")
+        bw = int(bar_w * pct / 100)
 
         svg += f'''
-  <circle cx="32" cy="{y - 4}" r="5" fill="{color}" />
-  <text x="46" y="{y}" font-family="Segoe UI, sans-serif" font-size="13" fill="{THEME['text']}">{escape(lang)}</text>
-  <text x="{card_w - 20}" y="{y}" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="13" fill="{THEME['text']}">{pct:.1f}%</text>
-  <rect x="46" y="{y + 5}" width="{bar_full_w}" height="5" rx="3" fill="{THEME['ring_bg']}" />
-  <rect x="46" y="{y + 5}" width="{bar_w}" height="5" rx="3" fill="{color}" />'''
-        y += 32
+  <rect x="24" y="{y}" width="10" height="10" rx="3" fill="{color}" />
+  <text x="40" y="{y + 9}" font-family="Segoe UI, sans-serif" font-size="13" fill="{T['text']}">{escape(lang)}</text>
+  <text x="310" y="{y + 9}" font-family="Segoe UI, sans-serif" font-size="13" fill="{T['label']}">{pct:.1f}%</text>
+  <rect x="24" y="{y + 18}" width="{bar_w}" height="6" rx="3" fill="{T['ring_bg']}" />
+  <rect x="24" y="{y + 18}" width="{bw}" height="6" rx="3" fill="{color}" />'''
+        y += 36
 
     svg += '\n</svg>'
     return svg
@@ -158,9 +178,10 @@ def generate_langs_svg(langs_data):
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
     print("Fetching user data...")
     user = api(f"/users/{USERNAME}")
+    print("Fetching avatar...")
+    avatar_uri = fetch_avatar_base64(user.get("avatar_url", ""))
 
     print("Fetching repos...")
     repos = api(f"/users/{USERNAME}/repos?per_page=100&sort=updated")
@@ -186,15 +207,15 @@ def main():
 
     print(f"Found {len(repos)} repos, {len(lang_data)} languages")
 
-    stats_svg = generate_stats_svg(user, repos)
+    svg1 = generate_stats_svg(user, repos, avatar_uri)
     with open(os.path.join(OUTPUT_DIR, "stats.svg"), "w", encoding="utf-8") as f:
-        f.write(stats_svg)
-    print(f"✅ stats.svg ({len(stats_svg)} bytes)")
+        f.write(svg1)
+    print(f"✅ stats.svg ({len(svg1)} bytes)")
 
-    langs_svg = generate_langs_svg(lang_data)
+    svg2 = generate_langs_svg(lang_data)
     with open(os.path.join(OUTPUT_DIR, "top-langs.svg"), "w", encoding="utf-8") as f:
-        f.write(langs_svg)
-    print(f"✅ top-langs.svg ({len(langs_svg)} bytes)")
+        f.write(svg2)
+    print(f"✅ top-langs.svg ({len(svg2)} bytes)")
 
 
 if __name__ == "__main__":
