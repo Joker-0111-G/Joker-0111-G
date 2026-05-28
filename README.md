@@ -1,7 +1,6 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=220&section=header&text=Hi,%20I'm%20Joker!&fontSize=70&animation=fadeIn&fontAlignY=35&desc=Go%20/%20C%2B%2B%20Developer%20%7C%20MCM%20Player%20%7C%20Student&descAlignY=55&descAlign=50"/>
 </div>
-
 <div align="center">
   <h3>
     <a href="https://git.io/typing-svg">
@@ -9,7 +8,6 @@
     </a>
   </h3>
 </div>
-
 <div align="center">
     <h3>🛠️ Tech Stack</h3>
     <br/>
@@ -22,12 +20,9 @@
     <img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
     <img src="https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
 </div>
-
 <br/>
-
 <div align="center">
   <img src="./assets/stats.svg" height="240" alt="stats" />
   <img src="./assets/top-langs.svg" height="240" alt="languages" />
 </div>
-
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer"/>
