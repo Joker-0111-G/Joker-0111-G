@@ -26,8 +26,8 @@
 <br/>
 
 <div align="center">
-  <img src="./assets/stats.svg" height="150" alt="stats" />
-  <img src="./assets/top-langs.svg" height="150" alt="languages" />
+  <img src="./assets/stats.svg" height="190" alt="stats" />
+  <img src="./assets/top-langs.svg" height="160" alt="languages" />
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer"/>
