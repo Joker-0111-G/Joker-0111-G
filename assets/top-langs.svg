@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="340" height="626" viewBox="0 0 340 626">
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="246" viewBox="0 0 340 246">
   <defs><linearGradient id="lh" x1="0%" y1="0%" x2="100%" y2="0%">
     <stop offset="0%" stop-color="#d4a72c"/><stop offset="50%" stop-color="#0969da"/><stop offset="100%" stop-color="#8250df"/></linearGradient></defs>
-  <rect width="340" height="626" rx="14" fill="#fff" stroke="#d0d7de" stroke-width="1.5"/>
+  <rect width="340" height="246" rx="14" fill="#fff" stroke="#d0d7de" stroke-width="1.5"/>
   <rect x="0" y="0" width="340" height="6" rx="14" fill="url(#lh)"/>
   <text x="20" y="30" font-family="Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#24292f">📊 Languages</text>
   <rect x="20" y="52" width="8" height="8" rx="2" fill="#DA5B0F"/>
@@ -29,54 +29,4 @@
   <text x="320" y="203" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">3.5%</text>
   <rect x="34" y="210" width="180" height="4" rx="2" fill="#eaeef2"/>
   <rect x="34" y="210" width="6" height="4" rx="2" fill="#3572A5"/>
-  <rect x="20" y="232" width="8" height="8" rx="2" fill="#e34c26"/>
-  <text x="34" y="239" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">HTML</text>
-  <text x="320" y="239" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">3.5%</text>
-  <rect x="34" y="246" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="246" width="6" height="4" rx="2" fill="#e34c26"/>
-  <rect x="20" y="268" width="8" height="8" rx="2" fill="#f34b7d"/>
-  <text x="34" y="275" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">C++</text>
-  <text x="320" y="275" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">2.5%</text>
-  <rect x="34" y="282" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="282" width="4" height="4" rx="2" fill="#f34b7d"/>
-  <rect x="20" y="304" width="8" height="8" rx="2" fill="#f1e05a"/>
-  <text x="34" y="311" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">JavaScript</text>
-  <text x="320" y="311" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">2.4%</text>
-  <rect x="34" y="318" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="318" width="4" height="4" rx="2" fill="#f1e05a"/>
-  <rect x="20" y="340" width="8" height="8" rx="2" fill="#57606a"/>
-  <text x="34" y="347" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">Assembly</text>
-  <text x="320" y="347" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">1.2%</text>
-  <rect x="34" y="354" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="354" width="2" height="4" rx="2" fill="#57606a"/>
-  <rect x="20" y="376" width="8" height="8" rx="2" fill="#57606a"/>
-  <text x="34" y="383" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">Makefile</text>
-  <text x="320" y="383" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.3%</text>
-  <rect x="34" y="390" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="390" width="1" height="4" rx="2" fill="#57606a"/>
-  <rect x="20" y="412" width="8" height="8" rx="2" fill="#57606a"/>
-  <text x="34" y="419" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">C#</text>
-  <text x="320" y="419" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.3%</text>
-  <rect x="34" y="426" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="426" width="1" height="4" rx="2" fill="#57606a"/>
-  <rect x="20" y="448" width="8" height="8" rx="2" fill="#DD1100"/>
-  <text x="34" y="455" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">Wolfram Language</text>
-  <text x="320" y="455" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.1%</text>
-  <rect x="34" y="462" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="462" width="1" height="4" rx="2" fill="#DD1100"/>
-  <rect x="20" y="484" width="8" height="8" rx="2" fill="#57606a"/>
-  <text x="34" y="491" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">Vim Script</text>
-  <text x="320" y="491" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.1%</text>
-  <rect x="34" y="498" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="498" width="1" height="4" rx="2" fill="#57606a"/>
-  <rect x="20" y="520" width="8" height="8" rx="2" fill="#563d7c"/>
-  <text x="34" y="527" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">CSS</text>
-  <text x="320" y="527" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.0%</text>
-  <rect x="34" y="534" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="534" width="1" height="4" rx="2" fill="#563d7c"/>
-  <rect x="20" y="556" width="8" height="8" rx="2" fill="#57606a"/>
-  <text x="34" y="563" font-family="Segoe UI,sans-serif" font-size="12" fill="#24292f">Dockerfile</text>
-  <text x="320" y="563" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="11" fill="#57606a">0.0%</text>
-  <rect x="34" y="570" width="180" height="4" rx="2" fill="#eaeef2"/>
-  <rect x="34" y="570" width="1" height="4" rx="2" fill="#57606a"/>
 </svg>
