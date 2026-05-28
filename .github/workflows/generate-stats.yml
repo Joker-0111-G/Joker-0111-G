@@ -1,42 +1,35 @@
-name: Generate Stats Images
+name: Update GitHub Stats
 
 on:
   schedule:
-    - cron: '0 2 * * *'        # 每天 UTC 0 点自动运行
-  workflow_dispatch:           # 允许手动触发
-  push:
-    branches: [ main ]         # 每次推送到 main 也更新（可选）
+    - cron: '0 0 * * *'   # 每天 UTC 0 点自动运行
+  workflow_dispatch:        # 允许手动触发
 
 jobs:
-  generate:
+  update-stats:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
 
       - name: Create assets directory
         run: mkdir -p assets
 
-      - name: Download stats card
+      - name: Download GitHub Stats SVG
         run: |
-          curl -s -o assets/stats.svg \
-          "https://github-readme-stats.vercel.app/api?username=Joker-0111-G&show_icons=true&count_private=true&theme=tokyonight&hide_border=true&bg_color=0d1117"
+          curl -s "https://github-readme-stats.vercel.app/api?username=Joker-0111-G&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117" > assets/stats.svg
 
-      - name: Download top languages card
+      - name: Download Top Languages SVG
         run: |
-          curl -s -o assets/top-langs.svg \
-          "https://github-readme-stats.vercel.app/api/top-langs/?username=Joker-0111-G&layout=compact&hide_border=true&theme=tokyonight&bg_color=0d1117"
+          curl -s "https://github-readme-stats.vercel.app/api/top-langs/?username=Joker-0111-G&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117" > assets/top-langs.svg
 
-      - name: Commit and push if changes
+      - name: Commit & Push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add assets/
-          if git diff --staged --quiet; then
+          if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Update stats images [skip ci]"
+            git commit -m "chore: update GitHub stats SVGs"
             git push
           fi
