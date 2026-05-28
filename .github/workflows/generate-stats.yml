@@ -1,0 +1,42 @@
+name: Generate Stats Images
+
+on:
+  schedule:
+    - cron: '0 0 * * *'        # 每天 UTC 0 点自动运行
+  workflow_dispatch:           # 允许手动触发
+  push:
+    branches: [ main ]         # 每次推送到 main 也更新（可选）
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create assets directory
+        run: mkdir -p assets
+
+      - name: Download stats card
+        run: |
+          curl -s -o assets/stats.svg \
+          "https://github-readme-stats.vercel.app/api?username=Joker-0111-G&show_icons=true&count_private=true&theme=tokyonight&hide_border=true&bg_color=0d1117"
+
+      - name: Download top languages card
+        run: |
+          curl -s -o assets/top-langs.svg \
+          "https://github-readme-stats.vercel.app/api/top-langs/?username=Joker-0111-G&layout=compact&hide_border=true&theme=tokyonight&bg_color=0d1117"
+
+      - name: Commit and push if changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update stats images [skip ci]"
+            git push
+          fi
