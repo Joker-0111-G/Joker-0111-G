@@ -105,7 +105,7 @@ def main():
 
     # ── Languages SVG ──
     total = sum(all_langs.values()) or 1
-    top = sorted(all_langs.items(), key=lambda x:-x[1])[:15]
+    top = sorted(all_langs.items(), key=lambda x:-x[1])[:5]
     cw2,ch2 = 340, 40+len(top)*38+16
     svg2 = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{cw2}" height="{ch2}" viewBox="0 0 {cw2} {ch2}">
   <defs><linearGradient id="lh" x1="0%" y1="0%" x2="100%" y2="0%">
