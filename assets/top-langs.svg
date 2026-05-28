@@ -1,5 +1,16 @@
-The deployment is currently unavailable
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="105" viewBox="0 0 420 105">
+  <defs>
+    <linearGradient id="lgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b22" />
+      <stop offset="100%" stop-color="#0d1117" />
+    </linearGradient>
+  </defs>
+  <rect width="420" height="105" rx="10" fill="url(#lgrad)" stroke="#30363d" stroke-width="1" />
+  <text x="20" y="24" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#c9d1d9">Most Used Languages</text>
 
-DEPLOYMENT_PAUSED
-
-iad1::msp5w-1779995802233-d2ff9c1af5ab
+  <rect x="20" y="48" width="10" height="10" rx="3" fill="#00ADD8" />
+  <text x="36" y="57" font-family="Segoe UI, sans-serif" font-size="12" fill="#c9d1d9">Go</text>
+  <text x="400" y="57" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="12" fill="#c9d1d9">100.0%</text>
+  <rect x="20" y="64" width="200" height="6" rx="3" fill="#21262d" />
+  <rect x="20" y="64" width="200" height="6" rx="3" fill="#00ADD8" />
+</svg>
