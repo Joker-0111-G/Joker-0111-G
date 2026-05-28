@@ -30,4 +30,9 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Joker-0111-G&layout=compact&hide_border=true&theme=tokyonight&bg_color=0d1117" height="150" alt="languages" />
 </div>
 
+<div align="center">
+  <img src="./assets/stats.svg" height="150" alt="stats" />
+  <img src="./assets/top-langs.svg" height="150" alt="languages" />
+</div>
+
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer"/>
