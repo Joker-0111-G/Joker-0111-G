@@ -16,6 +16,8 @@
 
         - name: Generate Stats SVG
           run: python3 .github/scripts/generate_stats.py
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Commit & Push
           run: |
