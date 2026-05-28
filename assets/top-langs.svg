@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="460" height="98" viewBox="0 0 460 98">
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="94" viewBox="0 0 450 94">
   <defs>
     <linearGradient id="lbg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0d1117" />
-      <stop offset="100%" stop-color="#161b22" />
+      <stop offset="0%" stop-color="#161b22" />
+      <stop offset="100%" stop-color="#0d1117" />
     </linearGradient>
     <linearGradient id="lhdr" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f0c040" />
-      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="0%" stop-color="#00b3ff" />
       <stop offset="100%" stop-color="#8b5cf6" />
     </linearGradient>
   </defs>
 
-  <rect width="460" height="98" rx="14" fill="url(#lbg)" stroke="#30363d" stroke-width="1.5" />
-  <rect x="0" y="0" width="460" height="6" rx="14" fill="url(#lhdr)" />
+  <rect width="450" height="94" rx="8" fill="url(#lbg)" stroke="#30363d" stroke-width="1" />
+  <rect x="0" y="0" width="450" height="4" rx="8" fill="url(#lhdr)" />
 
-  <text x="24" y="30" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#e6edf3">📊 Most Used Languages</text>
+  <text x="20" y="30" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#00b3ff">📊 Top Languages</text>
 
-  <rect x="24" y="48" width="10" height="10" rx="3" fill="#00ADD8" />
-  <text x="40" y="57" font-family="Segoe UI, sans-serif" font-size="12" fill="#e6edf3">Go</text>
-  <text x="340" y="57" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="12" fill="#8b949e">100.0%</text>
-  <rect x="350" y="49" width="90" height="8" rx="4" fill="#21262d" />
-  <rect x="350" y="49" width="90" height="8" rx="4" fill="#00ADD8" />
+  <rect x="20" y="44" width="410" height="1" fill="#30363d" />
+  <circle cx="32" cy="64" r="5" fill="#00ADD8" />
+  <text x="46" y="68" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">Go</text>
+  <text x="430" y="68" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">100.0%</text>
+  <rect x="46" y="73" width="250" height="5" rx="3" fill="#1f2937" />
+  <rect x="46" y="73" width="250" height="5" rx="3" fill="#00ADD8" />
 </svg>
