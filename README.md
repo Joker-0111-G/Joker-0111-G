@@ -26,7 +26,7 @@
 <br/>
 
 <div align="center">
-  <img src="./assets/stats.svg" height="280" alt="stats" />
+  <img src="./assets/stats.svg" height="210" alt="stats" />
   <img src="./assets/top-langs.svg" height="250" alt="languages" />
 </div>
 
